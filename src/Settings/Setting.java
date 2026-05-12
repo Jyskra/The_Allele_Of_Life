@@ -2,7 +2,23 @@ package Settings;
 import Simulation.*;
 
 public class Setting {
-    public void apply(Cell cell, Simulation simulation){
+    protected String name;
+    protected int initialWeight;
+
+    public Setting(String name, int initialWeight){
+        this.name = name;
+        this.initialWeight = initialWeight;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public int getInitialWeight() {
+        return initialWeight;
+    }
+
+    public void ApplyTo(Cell cell){
 
     }
 }
