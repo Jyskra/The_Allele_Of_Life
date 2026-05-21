@@ -24,6 +24,8 @@ public class Cell {
         return this.age;
     }
 
+    public HashMap<String, Double> getWeights(){return currentWeights;}
+
     public boolean isAlive(){
         return this.alive;
     }

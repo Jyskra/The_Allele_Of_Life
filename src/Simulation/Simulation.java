@@ -3,6 +3,7 @@ package Simulation;
 import Settings.Setting;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Simulation {
     private ArrayList<Cell> grid = new ArrayList<>();
@@ -10,6 +11,7 @@ public class Simulation {
     private int gridWidth, gridHeight;
 
     private ArrayList<Cell> neighbourBuffer = new ArrayList<>();
+    private HashMap<String, Double> weightBuffer = new HashMap<>();
 
     public Simulation(ArrayList<Setting> activeSettings, int width, int height){
         this.activeSettings = activeSettings;
@@ -61,8 +63,6 @@ public class Simulation {
             //implement radius setting
             int radius = 1;
 
-            Cell cell = grid.get(pos);
-
             neighbourBuffer.clear();
 
             int cellX = pos % gridWidth;
@@ -87,7 +87,29 @@ public class Simulation {
 
     private void calculateNeighbouringWeights(){
 
+        weightBuffer.clear();
 
+        int numberOfNeighbours = neighbourBuffer.size();
+
+        for(Cell neighbour : neighbourBuffer){
+
+            numberOfNeighbours++;
+
+            HashMap<String, Double> weights = neighbour.getWeights();
+
+            for(String key : weights.keySet()){
+
+                double newWeight = weightBuffer.get(key) + weights.get(key);
+                weightBuffer.put(key, newWeight);
+            }
+
+        }
+
+        for(String key : weightBuffer.keySet()){
+
+            weightBuffer.put(key, weightBuffer.get(key)/numberOfNeighbours);
+
+        }
 
     }
 
