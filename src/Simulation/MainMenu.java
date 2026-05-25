@@ -17,6 +17,8 @@ public class MainMenu extends JFrame {
         setResizable(false);
 
         //initUI
+
+        setVisible(true);
     }
 
 
