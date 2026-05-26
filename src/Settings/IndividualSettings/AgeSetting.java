@@ -1,11 +1,12 @@
-package Settings;
+package Settings.IndividualSettings;
 
+import Settings.Setting;
 import Simulation.*;
 
-public class AgeSetting extends Setting{
+public class AgeSetting extends Setting {
 
     public AgeSetting(){
-        super("Fertility", 0);
+        super("Fertility", 1, "Age limit", 1.0, 50.0, 10.0);
     }
 
     @Override

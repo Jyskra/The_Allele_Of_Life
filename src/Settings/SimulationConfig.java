@@ -6,11 +6,15 @@ import java.util.List;
 public class SimulationConfig {
     private final List<Setting> currentSettings = new ArrayList<>();
     private int neighbourRadius;
-    private int windowWidth;
-    private int windowHeight;
+    private int windowWidth = 1280;
+    private int windowHeight = 720;
 
     private List<Setting> getSettings(){
         return this.currentSettings;
+    }
+
+    private void addSetting(Setting setting){
+        currentSettings.add(setting);
     }
 
     public int getNeighbourRadius() {
@@ -35,13 +39,5 @@ public class SimulationConfig {
 
     public void setNeighbourRadius(int neighbourRadius) {
         this.neighbourRadius = neighbourRadius;
-    }
-
-    public void setWindowWidth(int windowWidth) {
-        this.windowWidth = windowWidth;
-    }
-
-    public void setWindowHeight(int windowHeight) {
-        this.windowHeight = windowHeight;
     }
 }

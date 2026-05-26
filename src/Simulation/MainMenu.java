@@ -1,6 +1,8 @@
 package Simulation;
 
 import Settings.SimulationConfig;
+import Windows.Customs;
+import Windows.SettingsWindow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,32 +25,78 @@ public class MainMenu extends JFrame {
     }
 
 
-    private void initUI(){
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+    private void initStart(JPanel panel){
 
-        JLabel title = new JLabel("The Allele Of Life");
-        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JButton startButton = new JButton("Start");
 
-        JButton startButton    = new JButton("Start Simulation");
+        Customs.mainMenuButtons(startButton);
+
+        panel.add(startButton, BorderLayout.CENTER);
+
+        startButton.addActionListener(e -> startSimulation());
+
+    }
+
+    private void startSimulation(){
+
+        System.out.println("Starting simulation...");
+
+    }
+
+    private void initExit(JPanel panel){
+
+        JButton ExitButton = new JButton("Exit");
+
+        Customs.mainMenuButtons(ExitButton);
+
+        panel.add(ExitButton, BorderLayout.CENTER);
+
+        ExitButton.addActionListener(e -> exit());
+
+    }
+
+    private void exit(){
+
+        System.out.println("Exiting...");
+        System.exit(0);
+
+    }
+
+    private void initSettings(JPanel panel){
+
         JButton settingsButton = new JButton("Settings");
-        JButton helpButton     = new JButton("Help");
 
-        startButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        settingsButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        helpButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        Customs.mainMenuButtons(settingsButton);
 
-        panel.add(Box.createVerticalGlue()); // pushes content to center
-        panel.add(title);
-        panel.add(Box.createRigidArea(new Dimension(0, 20))); // spacing
-        panel.add(startButton);
-        panel.add(Box.createRigidArea(new Dimension(0, 10)));
-        panel.add(settingsButton);
-        panel.add(Box.createRigidArea(new Dimension(0, 10)));
-        panel.add(helpButton);
-        panel.add(Box.createVerticalGlue());
+        panel.add(settingsButton, BorderLayout.CENTER);
 
-        add(panel);
+        settingsButton.addActionListener(e -> openSettings());
+
+    }
+
+    private void openSettings(){
+
+        System.out.println("Opening settings frame...");
+
+        new SettingsWindow(config, this);
+
+    }
+
+
+    private void initUI(){
+
+        JLabel backgroundLabel = new JLabel();
+        backgroundLabel.setLayout(new BorderLayout());
+
+        JPanel panel = new JPanel();
+
+        backgroundLabel.add(panel, BorderLayout.SOUTH);
+
+        initStart(panel);
+        initSettings(panel);
+        initExit(panel);
+
+        add(backgroundLabel);
 
         //add listeners
     }
