@@ -9,11 +9,11 @@ public class SimulationConfig {
     private int windowWidth = 1280;
     private int windowHeight = 720;
 
-    private List<Setting> getSettings(){
+    public List<Setting> getSettings(){
         return this.currentSettings;
     }
 
-    private void addSetting(Setting setting){
+    public void addSetting(Setting setting){
         currentSettings.add(setting);
     }
 

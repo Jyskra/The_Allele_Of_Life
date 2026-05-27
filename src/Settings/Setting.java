@@ -48,5 +48,13 @@ public abstract class Setting {
         return initialWeight;
     }
 
+    public SettingControlType getControlType() {
+        return controlType;
+    }
+
+    public void setSliderValue(double sliderValue) {
+        this.sliderValue = sliderValue;
+    }
+
     public abstract void ApplyTo(Cell cell);
 }

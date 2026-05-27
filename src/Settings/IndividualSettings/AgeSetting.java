@@ -6,7 +6,7 @@ import Simulation.*;
 public class AgeSetting extends Setting {
 
     public AgeSetting(){
-        super("Fertility", 1, "Age limit", 1.0, 50.0, 10.0);
+        super("Fertility", 1, "Age limit", 0, 50, 10);
     }
 
     @Override
