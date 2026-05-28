@@ -26,7 +26,7 @@ public class Simulation {
         this.gridHeight = 30;
         this.cellSize = 15;
 
-        window = new SimulationWindow(mainMenu, gridWidth, gridHeight, cellSize);
+        window = new SimulationWindow(mainMenu, gridWidth, gridHeight, cellSize, config);
         gridPanel = window.getGridPanel();
 
         initializeGrid();

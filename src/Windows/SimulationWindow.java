@@ -1,30 +1,37 @@
 package Windows;
 
+import Settings.SimulationConfig;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class SimulationWindow extends JDialog {
 
-    private final int windowWidth = 1280;
-    private final int windowHeight = 720;
+    private final int windowWidth = 1080;
+    private final int windowHeight = 600;
 
     private final int gridWidth, gridHeight, cellSize;
 
     private final GridPanel gridPanel;
 
-    public SimulationWindow(JFrame mainMenu, int gridWidth, int gridHeight, int cellSize){
+    public SimulationWindow(JFrame mainMenu, int gridWidth, int gridHeight, int cellSize, SimulationConfig config){
 
         super(mainMenu, "Simulation", false);
-        setSize(windowWidth, gridHeight);
-        setLocationRelativeTo(mainMenu);
+        setSize(windowWidth, windowHeight);
+        setResizable(false);
 
         this.gridWidth = gridWidth;
         this.gridHeight = gridHeight;
         this.cellSize = cellSize;
 
         gridPanel = new GridPanel(gridWidth, gridHeight, cellSize);
+        sidebarPanel sidebar = new sidebarPanel(windowHeight, config, mainMenu);
 
+        add(sidebar, BorderLayout.EAST);
         add(gridPanel, BorderLayout.CENTER);
+
+        pack();
+        setLocationRelativeTo(mainMenu);
         setVisible(true);
     }
 

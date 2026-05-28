@@ -17,6 +17,19 @@ public class Customs {
         button.setFocusable(false);
     }
 
+    public static void sideBarButton(JButton button){
+        button.setBackground(new Color(255, 255, 255));
+        button.setForeground(Color.BLACK);
+        button.setAlignmentX(Component.CENTER_ALIGNMENT);
+        button.setFont(new Font("Arial", Font.BOLD, 20));
+        button.setPreferredSize(null);
+
+        button.setFocusPainted(true);
+        button.setBorderPainted(true);
+
+        button.setFocusable(false);
+    }
+
     public static void settingsSlider(JSlider slider){
 
         slider.setMajorTickSpacing(25);
