@@ -30,6 +30,21 @@ public class Customs {
         button.setFocusable(false);
     }
 
+    public static void startButton(JToggleButton button){
+
+        button.setBackground(new Color(255, 255, 255));
+        button.setForeground(Color.BLACK);
+        button.setAlignmentX(Component.CENTER_ALIGNMENT);
+        button.setFont(new Font("Arial", Font.BOLD, 20));
+        button.setPreferredSize(null);
+
+        button.setFocusPainted(true);
+        button.setBorderPainted(true);
+
+        button.setFocusable(false);
+
+    }
+
     public static void settingsSlider(JSlider slider){
 
         slider.setMajorTickSpacing(25);
@@ -53,14 +68,24 @@ public class Customs {
 
     }
 
+    public static void updateStartButton(JToggleButton button){
+
+        if(button.isSelected()){
+            button.setText("Pause");
+            button.setBackground(new Color(255, 50, 0));
+        }else{
+            button.setText("Start");
+            button.setBackground(new Color(50, 255, 50));
+        }
+
+    }
+
     public static void updateToggleColor(JToggleButton button){
 
         if (button.isSelected()) {
-            button.setBackground(new Color(50, 255, 0));
-            button.setForeground(new Color(0, 0, 0));
+            button.setBackground(new Color(50, 255, 50));
         } else {
             button.setBackground(new Color(255, 50, 0));
-            button.setForeground(new Color(0, 0, 0)); // muted text
         }
     }
 

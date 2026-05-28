@@ -20,19 +20,34 @@ public class Simulation {
     private SimulationWindow window;
     private final GridPanel gridPanel;
 
+    private boolean running = false;
+    private Timer gameLoop;
+
     public Simulation(SimulationConfig config, JFrame mainMenu){
         this.config = config;
         this.gridWidth = 30;
         this.gridHeight = 30;
         this.cellSize = 15;
 
-        window = new SimulationWindow(mainMenu, gridWidth, gridHeight, cellSize, config);
+        window = new SimulationWindow(mainMenu, gridWidth, gridHeight, cellSize, config, this);
         gridPanel = window.getGridPanel();
 
         initializeGrid();
 
         window.setVisible(true);
     }
+
+    public void start(){
+        running = true;
+        gameLoop = new Timer(500, e -> tick()); //TODO tick timer setting
+        gameLoop.start();
+    }
+
+    public void stop(){
+        running = false;
+        if(gameLoop != null) gameLoop.stop();
+    }
+
 
     private void initializeGrid(){
         for(int i = 0; i < gridHeight * gridWidth; i++){
@@ -48,7 +63,6 @@ public class Simulation {
             grid.add(c);
         }
 
-        System.out.println(grid);
         gridPanel.updateGrid(grid);
 
 //        for(int i = 0; i<60; i++){
@@ -59,6 +73,9 @@ public class Simulation {
     }
 
     private void tick(){
+
+        System.out.println("tick");
+
         for(int i = 0; i < gridHeight * gridWidth; i++){
 
             Cell currentCell = grid.get(i);
@@ -68,8 +85,6 @@ public class Simulation {
             }
 
             currentCell.setAge(currentCell.getAge() + 1);
-
-            System.out.println(grid);
         }
     }
 
