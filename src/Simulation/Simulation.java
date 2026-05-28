@@ -1,24 +1,37 @@
 package Simulation;
 
 import Settings.Setting;
+import Settings.SimulationConfig;
+import Windows.GridPanel;
+import Windows.SimulationWindow;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Simulation {
     private ArrayList<Cell> grid = new ArrayList<>();
-    private ArrayList<Setting> activeSettings;
-    private int gridWidth, gridHeight;
+    private SimulationConfig config;
+    private final int gridWidth, gridHeight, cellSize;
 
     private ArrayList<Cell> neighbourBuffer = new ArrayList<>();
     private HashMap<String, Double> weightBuffer = new HashMap<>();
 
-    public Simulation(ArrayList<Setting> activeSettings, int width, int height){
-        this.activeSettings = activeSettings;
-        this.gridWidth = width;
-        this.gridHeight = height;
+    private SimulationWindow window;
+    private final GridPanel gridPanel;
+
+    public Simulation(SimulationConfig config, JFrame mainMenu){
+        this.config = config;
+        this.gridWidth = 30;
+        this.gridHeight = 30;
+        this.cellSize = 15;
+
+        window = new SimulationWindow(mainMenu, gridWidth, gridHeight, cellSize);
+        gridPanel = window.getGridPanel();
 
         initializeGrid();
+
+        window.setVisible(true);
     }
 
     private void initializeGrid(){
@@ -26,7 +39,7 @@ public class Simulation {
 
             Cell c = new Cell();
 
-            for(Setting s : activeSettings){
+            for(Setting s : config.getSettings()){
 
                 c.addSetting(s.getName(), s.getInitialWeight());
 
@@ -34,6 +47,9 @@ public class Simulation {
 
             grid.add(c);
         }
+
+        System.out.println(grid);
+        gridPanel.updateGrid(grid);
 
 //        for(int i = 0; i<60; i++){
 //            tick();
@@ -47,7 +63,7 @@ public class Simulation {
 
             Cell currentCell = grid.get(i);
 
-            for(Setting s : activeSettings){
+            for(Setting s : config.getSettings()){
                 s.ApplyTo(currentCell);
             }
 

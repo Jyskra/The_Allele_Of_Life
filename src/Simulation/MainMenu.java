@@ -25,9 +25,9 @@ public class MainMenu extends JFrame {
     }
 
 
-    private void initStart(JPanel panel){
+    private void initOpen(JPanel panel){
 
-        JButton startButton = new JButton("Start");
+        JButton startButton = new JButton("Open");
 
         Customs.mainMenuButtons(startButton);
 
@@ -40,6 +40,8 @@ public class MainMenu extends JFrame {
     private void startSimulation(){
 
         System.out.println("Starting simulation...");
+
+        new Simulation(config, this);
 
     }
 
@@ -92,7 +94,7 @@ public class MainMenu extends JFrame {
 
         backgroundLabel.add(panel, BorderLayout.SOUTH);
 
-        initStart(panel);
+        initOpen(panel);
         initSettings(panel);
         initExit(panel);
 
