@@ -24,6 +24,10 @@ public class Cell {
         return this.age;
     }
 
+    public void setAlive(boolean alive){
+        this.alive = alive;
+    }
+
     public HashMap<String, Double> getWeights(){return currentWeights;}
 
     public boolean isAlive(){

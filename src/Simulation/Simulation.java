@@ -37,6 +37,15 @@ public class Simulation {
         window.setVisible(true);
     }
 
+    public void randomize(double density){
+        for(Cell cell : grid){
+
+            cell.setAlive(Math.random() < density);
+
+        }
+        gridPanel.updateGrid(grid);
+    }
+
     public void start(){
         running = true;
         gameLoop = new Timer(500, e -> tick()); //TODO tick timer setting
@@ -65,11 +74,7 @@ public class Simulation {
 
         gridPanel.updateGrid(grid);
 
-//        for(int i = 0; i<60; i++){
-//            tick();
-//        }
-
-        calculateNeighbouringWeights();
+        randomize(0.3);
     }
 
     private void tick(){

@@ -55,7 +55,11 @@ public class GridPanel extends JPanel {
     }
 
     private Color getCellColor(Cell cell){
-        return Color.WHITE;
+        if(cell.isAlive()){
+            return Color.BLACK;
+        }else{
+            return Color.WHITE;
+        }
     }
 
 }
