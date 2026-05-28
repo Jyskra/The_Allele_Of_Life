@@ -5,8 +5,8 @@ import java.util.HashMap;
 public class Cell {
     private int age;
     private boolean alive;
+    private boolean nextAlive;
     private HashMap<String, Double> currentWeights = new HashMap<>();
-    private HashMap<String, Double> proximityWeightAverages = new HashMap<>();
 
     public Cell(){
 
@@ -28,18 +28,28 @@ public class Cell {
         this.alive = alive;
     }
 
+    public void setNextAlive(boolean nextAlive){
+        this.nextAlive = nextAlive;
+    }
+
     public HashMap<String, Double> getWeights(){return currentWeights;}
 
     public boolean isAlive(){
         return this.alive;
     }
 
-    public void setAge(int newAge){
-        this.age = newAge;
-    }
-
     public void addSetting(String name, double initialWeight){
         currentWeights.put(name, initialWeight);
+    }
+
+    public void flush(){
+
+        this.age++;
+        this.alive = this.nextAlive;
+        if (!this.alive) {
+            this.age = 0;
+        }
+
     }
 
     @Override
@@ -48,7 +58,6 @@ public class Cell {
                 "age=" + age +
                 ", alive=" + alive +
                 ", currentWeights=" + currentWeights +
-                ", proximityWeightAverages=" + proximityWeightAverages +
                 '}';
     }
 }

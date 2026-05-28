@@ -29,14 +29,6 @@ public class SimulationConfig {
         return windowHeight;
     }
 
-    public void configure(Setting setting, boolean added){
-        if(added){
-            currentSettings.add(setting);
-        }else{
-            currentSettings.remove(setting);
-        }
-    }
-
     public void setNeighbourRadius(int neighbourRadius) {
         this.neighbourRadius = neighbourRadius;
     }

@@ -23,7 +23,9 @@ public class SettingsWindow extends JDialog {
 
         showAllSettings(container);
 
-        add(new JScrollPane(container));
+        JScrollPane scroll = new JScrollPane(container);
+        scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        add(scroll);
 
         setVisible(true);
     }
@@ -39,65 +41,63 @@ public class SettingsWindow extends JDialog {
 
     }
 
-    private void makeRadiusSetting(){
+    private JPanel buildSetting(Setting setting) {
+        JPanel row = new JPanel(new GridBagLayout());
+        row.setMaximumSize(new Dimension(Integer.MAX_VALUE, 56));
+        row.setBorder(BorderFactory.createEmptyBorder(4, 10, 4, 10));
 
-    }
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridy   = 0;
+        gbc.insets  = new Insets(0, 4, 0, 4);
+        gbc.anchor  = GridBagConstraints.WEST;
 
-    private JPanel buildSetting(Setting setting){
-
-        JPanel settingContainer = new JPanel(new BorderLayout());
-        settingContainer.setMaximumSize(new Dimension(Integer.MAX_VALUE, 64));
-        settingContainer.setBorder(BorderFactory.createEmptyBorder(6, 10, 6, 10));
-
+        gbc.gridx   = 0;
+        gbc.weightx = 0;
         JLabel label = new JLabel(setting.getSliderLabel());
-        JToggleButton toggle = new JToggleButton("Off");
-        Customs.settingsButton(toggle);
+        label.setPreferredSize(new Dimension(110, 20));
+        row.add(label, gbc);
 
-        toggle.addActionListener(e -> {
+        if (setting.getControlType() != SettingControlType.SLIDEBAR) {
+            gbc.gridx = 1;
+            JToggleButton toggle = new JToggleButton("Off");
             Customs.settingsButton(toggle);
-            boolean isOn = toggle.isSelected();
-            toggle.setText(isOn ? "On" : "Off");
-            config.configure(setting, isOn);
-        });
-
-        JPanel left = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        left.add(label);
-        left.add(toggle);
-
-        settingContainer.add(left, BorderLayout.WEST);
-
-        if(setting.getControlType() == SettingControlType.TOGGLE_WITH_SLIDEBAR){
-            JPanel sliderPanel = buildSlider(setting);
-            settingContainer.add(sliderPanel, BorderLayout.EAST);
+            toggle.addActionListener(e -> {
+                Customs.settingsButton(toggle);
+                boolean isOn = toggle.isSelected();
+                toggle.setText(isOn ? "On" : "Off");
+                setting.setEnabled(isOn);
+            });
+            row.add(toggle, gbc);
         }
 
-        return settingContainer;
+        if (setting.getControlType() == SettingControlType.TOGGLE_WITH_SLIDEBAR
+                || setting.getControlType() == SettingControlType.SLIDEBAR) {
 
+            gbc.gridx   = 2;
+            gbc.weightx = 1.0;
+            gbc.fill    = GridBagConstraints.HORIZONTAL;
+            JSlider slider = new JSlider((int) setting.getSliderMin(),
+                    (int) setting.getSliderMax(),
+                    (int) setting.getSliderValue());
+            Customs.settingsSlider(slider);
+
+            JLabel readout = new JLabel(String.format("%.1f", setting.getSliderValue()));
+            readout.setPreferredSize(new Dimension(36, 20));
+
+            slider.addChangeListener(e -> {
+                setting.setSliderValue(slider.getValue());
+                readout.setText(String.format("%.1f", (double) slider.getValue()));
+            });
+
+            row.add(slider, gbc);
+
+            gbc.gridx   = 3;
+            gbc.weightx = 0;
+            gbc.fill    = GridBagConstraints.NONE;
+            row.add(readout, gbc);
+        }
+
+        return row;
     }
 
-    private JPanel buildSlider(Setting setting){
-        int min   = (int)(setting.getSliderMin());
-        int max   = (int)(setting.getSliderMax());
-        int initialValue = (int)(setting.getSliderValue());
-
-        JSlider slider = new JSlider(min, max, initialValue);
-
-        Customs.settingsSlider(slider);
-
-        JLabel  readout = new JLabel(String.format("%.2f", setting.getSliderValue()));
-        readout.setPreferredSize(new Dimension(40, 20));
-
-        slider.addChangeListener(e -> {
-            double value = slider.getValue();
-            setting.setSliderValue(value);
-            readout.setText(String.format("%.2f", value));
-        });
-
-        JPanel panel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        panel.add(new JLabel(setting.getSliderLabel()));
-        panel.add(slider);
-        panel.add(readout);
-        return panel;
-
-    }
 }
