@@ -6,13 +6,12 @@ import Simulation.Cell;
 public class OverCrowdednessSetting extends Setting {
 
     public OverCrowdednessSetting(){
-        super("Crowding", "Crowding Multi", 0, 50, 5, true);
+        super("Crowding", "Crowding Multi", 0, 50, 2, true);
     }
 
     @Override
     public void ApplyTo(Cell cell, double n, int neighbourCount){
-        double crowding = neighbourCount;
-        cell.setWeight(name, crowding);
+        cell.setWeight(name, neighbourCount);
     }
 
     @Override

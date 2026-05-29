@@ -81,15 +81,29 @@ public class Simulation {
         System.out.println("tick");
         //TODO balance out settings and add more
 
+        double averageWeights = 0.0;
+        double averageAge = 0.0;
+
         for(int pos = 0; pos < grid.size(); pos++){
 
             Cell currentCell = grid.get(pos);
 
+            averageAge += currentCell.getAge();
+
             getNeighbours(pos);
             int alives = calculateNeighbouringWeights();
 
-            double totalWeights = 0.0;
             double weightRangeMin = 0, weightRangeMax = 100;
+            double settingsInfluence = 0.1;
+
+            boolean baseAlive;
+            if(currentCell.isAlive()){
+                baseAlive = alives == 2 || alives == 3;
+            }else{
+                baseAlive = alives == 3;
+            }
+
+            double totalWeights = 0.0;
 
             for(Setting s : config.getSettings()){
 
@@ -100,21 +114,31 @@ public class Simulation {
                         s.ApplyTo(currentCell, weightBuffer.get(s.getName()), alives);
 
                         totalWeights += s.Contribute(currentCell);
-                        System.out.println(totalWeights);
 
                     }
 
                     if (s.getName().equalsIgnoreCase("weightrangemin")){weightRangeMin = s.getSliderValue();}
                     if (s.getName().equalsIgnoreCase("weightrangemax")){weightRangeMax = s.getSliderValue();}
+                    if (s.getName().equalsIgnoreCase("settingcontribution")){settingsInfluence = s.getSliderValue() / 100;}
 
                 }
 
             }
 
-            currentCell.setNextAlive(totalWeights >= weightRangeMin && totalWeights <= weightRangeMax);
+            double clampledTotal = Math.clamp(totalWeights, -1.0, 1.0);
+
+            double survivalChance = (baseAlive ? 1.0 : 0.0) + clampledTotal * settingsInfluence;
+            survivalChance = Math.clamp(survivalChance, 0.0, 1.0);
+
+            currentCell.setNextAlive(Math.random() < survivalChance);
+
+            averageWeights += totalWeights;
 
             currentCell.flush();
         }
+
+        window.getSidebar().updateAverageWeight(averageWeights / grid.size());
+        window.getSidebar().updateAverageAge(averageAge / grid.size());
 
         gridPanel.updateGrid(grid);
     }
@@ -151,9 +175,9 @@ public class Simulation {
 
         for(Cell neighbour : neighbourBuffer){
 
-            numberOfNeighbours++;
-
             HashMap<String, Double> weights = neighbour.getWeights();
+
+            if(neighbour.isAlive()){numberOfNeighbours++;}
 
             for(String key : weights.keySet()){
 

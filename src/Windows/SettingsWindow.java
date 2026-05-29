@@ -59,8 +59,9 @@ public class SettingsWindow extends JDialog {
 
         if (setting.getControlType() != SettingControlType.SLIDEBAR) {
             gbc.gridx = 1;
-            JToggleButton toggle = new JToggleButton("Off");
+            JToggleButton toggle = new JToggleButton("On");
             Customs.settingsButton(toggle);
+            setting.setEnabled(true);
             toggle.addActionListener(e -> {
                 Customs.settingsButton(toggle);
                 boolean isOn = toggle.isSelected();

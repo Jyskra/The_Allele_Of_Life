@@ -1,9 +1,6 @@
 package Simulation;
 
-import Settings.IndividualSettings.AgeSetting;
-import Settings.IndividualSettings.OverCrowdednessSetting;
-import Settings.IndividualSettings.WeightRangeMax;
-import Settings.IndividualSettings.WeightRangeMin;
+import Settings.IndividualSettings.*;
 import Settings.SimulationConfig;
 
 public class Initialization {
@@ -15,10 +12,12 @@ public class Initialization {
         OverCrowdednessSetting ocs = new OverCrowdednessSetting();
         WeightRangeMax wr = new WeightRangeMax();
         WeightRangeMin wrm = new WeightRangeMin();
+        SettingContributionSetting scs = new SettingContributionSetting();
 
         sc.addSetting(as);
         sc.addSetting(ocs);
         sc.addSetting(wr);
         sc.addSetting(wrm);
+        sc.addSetting(scs);
     }
 }

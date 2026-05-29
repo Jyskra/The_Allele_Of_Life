@@ -12,6 +12,7 @@ public class sidebarPanel extends JPanel {
     private SimulationConfig config;
     private JFrame mainMenu;
     private final Simulation simulation;
+    private JLabel averageAge;
 
     public sidebarPanel(SimulationConfig config, JFrame mainMenu, Simulation simulation){
 
@@ -23,6 +24,38 @@ public class sidebarPanel extends JPanel {
         this.simulation = simulation;
 
         initSidebar();
+
+    }
+
+    private void initAverageWeight(){
+
+        averageAge = new JLabel("Avg weight: 0.00");
+        averageAge.setForeground(Color.WHITE);
+        averageAge.setFont(new Font("Arial", Font.PLAIN, 12));
+        averageAge.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(averageAge);
+        add(Box.createRigidArea(new Dimension(0, 16)));
+
+    }
+
+    public void updateAverageWeight(double average){
+        averageAge.setText(String.format("Avg weight: %.2f", average));
+    }
+
+    private void initAverageAge(){
+
+        averageAge = new JLabel("Avg age: 0.00");
+        averageAge.setForeground(Color.WHITE);
+        averageAge.setFont(new Font("Arial", Font.PLAIN, 12));
+        averageAge.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(averageAge);
+        add(Box.createRigidArea(new Dimension(0, 16)));
+
+    }
+
+    public void updateAverageAge(double average){
+
+        averageAge.setText(String.format("Avg age: %.2f", average));
 
     }
 
@@ -43,6 +76,7 @@ public class sidebarPanel extends JPanel {
 
         System.out.println("Closing simulation...");
 
+        simulation.stop();
         SwingUtilities.getWindowAncestor(this).dispose();
 
     }
@@ -104,6 +138,8 @@ public class sidebarPanel extends JPanel {
         initStartButton();
         initSettingsButton();
         initExitButton();
+        initAverageWeight();
+        initAverageAge();
 
     }
 
