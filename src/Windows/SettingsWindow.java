@@ -61,12 +61,14 @@ public class SettingsWindow extends JDialog {
             gbc.gridx = 1;
             JToggleButton toggle = new JToggleButton("On");
             Customs.settingsButton(toggle);
+
             toggle.addActionListener(e -> {
                 Customs.settingsButton(toggle);
                 boolean isOn = toggle.isSelected();
                 toggle.setText(isOn ? "On" : "Off");
                 setting.setEnabled(isOn);
             });
+
             row.add(toggle, gbc);
         }
 
