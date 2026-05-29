@@ -101,7 +101,7 @@ public class sidebarPanel extends JPanel {
 
     private void initRandomizeButton(){
 
-        JButton randomizeButton = new JButton("Rndm");
+        JButton randomizeButton = new JButton("Random");
 
         Customs.sideBarButton(randomizeButton);
         add(Box.createRigidArea(new Dimension(0, 16)));

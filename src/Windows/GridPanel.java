@@ -4,6 +4,9 @@ import Simulation.Cell;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 
 public class GridPanel extends JPanel {
@@ -19,6 +22,38 @@ public class GridPanel extends JPanel {
 
         setPreferredSize(new Dimension(gridWidth * cellSize, gridHeight * cellSize));
         setBackground(Color.BLACK);
+
+        mouseEnabling();
+    }
+
+    private void mouseEnabling(){
+
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+                if (grid == null) return;
+                int x = e.getX() / cellSize;
+                int y = e.getY() / cellSize;
+                if (x < 0 || x >= gridWidth || y < 0 || y >= gridHeight) return;
+                Cell cell = grid.get(y * gridWidth + x);
+                cell.setAlive(!cell.isAlive());
+                repaint();
+            }
+        });
+
+        addMouseMotionListener(new MouseMotionAdapter() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+
+                if (grid == null) return;
+                int x = e.getX() / cellSize;
+                int y = e.getY() / cellSize;
+                if (x < 0 || x >= gridWidth || y < 0 || y >= gridHeight) return;
+                grid.get(y * gridWidth + x).setAlive(true); // drag always sets alive
+                repaint();
+            }
+        });
 
     }
 
