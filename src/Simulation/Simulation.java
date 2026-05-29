@@ -82,7 +82,7 @@ public class Simulation {
             grid.add(c);
         }
 
-        randomize(0.3);
+        gridPanel.updateGrid(grid);
     }
 
     private void tick(){

@@ -12,6 +12,7 @@ public class sidebarPanel extends JPanel {
     private SimulationConfig config;
     private JFrame mainMenu;
     private final Simulation simulation;
+
     private JLabel averageAge;
     private JLabel averageWeight;
     private JLabel tickCount;
@@ -98,6 +99,25 @@ public class sidebarPanel extends JPanel {
 
     }
 
+    private void initRandomizeButton(){
+
+        JButton randomizeButton = new JButton("Rndm");
+
+        Customs.sideBarButton(randomizeButton);
+        add(Box.createRigidArea(new Dimension(0, 16)));
+
+        add(randomizeButton);
+
+        randomizeButton.addActionListener(e -> randomize());
+
+    }
+
+    private void randomize(){
+
+        simulation.randomize(0.3);
+
+    }
+
     private void initStartButton(){
 
         JToggleButton startButton = new JToggleButton("Start");
@@ -152,9 +172,13 @@ public class sidebarPanel extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBorder(BorderFactory.createEmptyBorder(20, 16, 20 ,16));
 
+        //Buttons
         initStartButton();
+        initRandomizeButton();
         initSettingsButton();
         initExitButton();
+
+        //Labels
         initAverageWeight();
         initAverageAge();
         initTickCount();
