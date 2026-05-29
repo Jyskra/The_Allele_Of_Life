@@ -23,6 +23,7 @@ public class Simulation {
 
     private boolean running = false;
     private Timer gameLoop;
+    private int tickTime = 500;
 
     public Simulation(SimulationConfig config, JFrame mainMenu){
         this.config = config;
@@ -49,7 +50,12 @@ public class Simulation {
 
     public void start(){
         running = true;
-        gameLoop = new Timer(500, e -> tick()); //TODO tick timer setting
+        for(Setting s : config.getSettings()){
+            if(s.getName().equalsIgnoreCase("ticktime")){
+                tickTime = (int) s.getSliderValue() * 10;
+            }
+        }
+        gameLoop = new Timer(tickTime, e -> tick());
         gameLoop.start();
     }
 
@@ -79,7 +85,6 @@ public class Simulation {
     private void tick(){
 
         System.out.println("tick");
-        //TODO balance out settings and add more
 
         double averageWeights = 0.0;
         double averageAge = 0.0;

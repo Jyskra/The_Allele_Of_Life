@@ -15,6 +15,7 @@ public class SimulationConfig {
 
     public void addSetting(Setting setting){
         currentSettings.add(setting);
+        setting.setEnabled(true);
     }
 
     public int getNeighbourRadius() {

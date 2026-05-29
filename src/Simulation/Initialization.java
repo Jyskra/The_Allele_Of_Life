@@ -10,14 +10,12 @@ public class Initialization {
 
         AgeSetting as = new AgeSetting();
         OverCrowdednessSetting ocs = new OverCrowdednessSetting();
-        WeightRangeMax wr = new WeightRangeMax();
-        WeightRangeMin wrm = new WeightRangeMin();
         SettingContributionSetting scs = new SettingContributionSetting();
+        TickSetting ts = new TickSetting();
 
+        sc.addSetting(ts);
         sc.addSetting(as);
         sc.addSetting(ocs);
-        sc.addSetting(wr);
-        sc.addSetting(wrm);
         sc.addSetting(scs);
     }
 }
