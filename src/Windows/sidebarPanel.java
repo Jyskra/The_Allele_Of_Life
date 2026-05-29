@@ -13,6 +13,8 @@ public class sidebarPanel extends JPanel {
     private JFrame mainMenu;
     private final Simulation simulation;
     private JLabel averageAge;
+    private JLabel averageWeight;
+    private JLabel tickCount;
 
     public sidebarPanel(SimulationConfig config, JFrame mainMenu, Simulation simulation){
 
@@ -29,17 +31,32 @@ public class sidebarPanel extends JPanel {
 
     private void initAverageWeight(){
 
-        averageAge = new JLabel("Avg weight: 0.00");
-        averageAge.setForeground(Color.WHITE);
-        averageAge.setFont(new Font("Arial", Font.PLAIN, 12));
-        averageAge.setAlignmentX(Component.CENTER_ALIGNMENT);
-        add(averageAge);
+        averageWeight = new JLabel("Avg weight: 0.00");
+        averageWeight.setForeground(Color.WHITE);
+        averageWeight.setFont(new Font("Arial", Font.PLAIN, 12));
+        averageWeight.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(averageWeight);
         add(Box.createRigidArea(new Dimension(0, 16)));
 
     }
 
     public void updateAverageWeight(double average){
         averageAge.setText(String.format("Avg weight: %.2f", average));
+    }
+
+    private void initTickCount(){
+
+        tickCount = new JLabel("Tick count: 0");
+        tickCount.setForeground(Color.WHITE);
+        tickCount.setFont(new Font("Arial", Font.PLAIN, 12));
+        tickCount.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(tickCount);
+        add(Box.createRigidArea(new Dimension(0, 16)));
+
+    }
+
+    public void updateTickCount(int tc){
+        tickCount.setText(String.format("Tick count: %d", tc));
     }
 
     private void initAverageAge(){
@@ -140,6 +157,7 @@ public class sidebarPanel extends JPanel {
         initExitButton();
         initAverageWeight();
         initAverageAge();
+        initTickCount();
 
     }
 

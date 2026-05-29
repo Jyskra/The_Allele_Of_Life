@@ -15,6 +15,8 @@ public class Simulation {
     private SimulationConfig config;
     private final int gridWidth, gridHeight, cellSize;
 
+    private int tickCount;
+
     private ArrayList<Cell> neighbourBuffer = new ArrayList<>();
     private HashMap<String, Double> weightBuffer = new HashMap<>();
 
@@ -30,6 +32,7 @@ public class Simulation {
         this.gridWidth = 30;
         this.gridHeight = 30;
         this.cellSize = 15;
+        this.tickCount = 0;
 
         window = new SimulationWindow(mainMenu, gridWidth, gridHeight, cellSize, config, this);
         gridPanel = window.getGridPanel();
@@ -147,6 +150,9 @@ public class Simulation {
         window.getSidebar().updateAverageAge(averageAge / grid.size());
 
         gridPanel.updateGrid(grid);
+
+        tickCount++;
+        window.getSidebar().updateTickCount(tickCount);
     }
 
     private void getNeighbours(int pos){
@@ -207,5 +213,4 @@ public class Simulation {
         return numberOfNeighbours;
 
     }
-
 }
