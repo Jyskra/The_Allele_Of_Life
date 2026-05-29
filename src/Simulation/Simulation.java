@@ -127,6 +127,7 @@ public class Simulation {
 
             double clampledTotal = Math.clamp(totalWeights, -1.0, 1.0);
 
+
             double survivalChance = (baseAlive ? 1.0 : 0.0) + clampledTotal * settingsInfluence;
             survivalChance = Math.clamp(survivalChance, 0.0, 1.0);
 
