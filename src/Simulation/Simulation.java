@@ -145,7 +145,6 @@ public class Simulation {
             c.flush();
         }
 
-        window.getSidebar().updateAverageWeight(averageWeights / grid.size());
         window.getSidebar().updateAverageAge(averageAge / grid.size());
 
         gridPanel.updateGrid(grid);
@@ -203,10 +202,10 @@ public class Simulation {
 
         }
 
-        for(String key : weightBuffer.keySet()){
+        if (numberOfNeighbours == 0) return 0;
 
-            weightBuffer.put(key, weightBuffer.get(key)/numberOfNeighbours);
-
+        for (String key : weightBuffer.keySet()) {
+            weightBuffer.put(key, weightBuffer.get(key) / numberOfNeighbours);
         }
 
         return numberOfNeighbours;

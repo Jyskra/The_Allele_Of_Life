@@ -12,10 +12,12 @@ public class Initialization {
         OverCrowdednessSetting ocs = new OverCrowdednessSetting();
         SettingContributionSetting scs = new SettingContributionSetting();
         TickSetting ts = new TickSetting();
+        VitalitySetting vs = new VitalitySetting();
 
         sc.addSetting(ts);
         sc.addSetting(as);
         sc.addSetting(ocs);
         sc.addSetting(scs);
+        sc.addSetting(vs);
     }
 }
