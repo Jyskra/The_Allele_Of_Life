@@ -84,23 +84,31 @@ public class MainMenu extends JFrame {
 
     }
 
+    private void initTitle(JPanel container){
+
+        JLabel title = new JLabel("The Allele Of Life", SwingConstants.CENTER);
+        title.setFont(new Font("Georgia", Font.BOLD, 52));
+        title.setForeground(new Color(99, 202, 183));
+        container.add(title, BorderLayout.CENTER);
+    }
+
+
 
     private void initUI(){
 
-        JLabel backgroundLabel = new JLabel();
-        backgroundLabel.setLayout(new BorderLayout());
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.setBackground(new Color(20, 20, 28));
 
-        JPanel panel = new JPanel();
+        initTitle(panel);
 
-        backgroundLabel.add(panel, BorderLayout.SOUTH);
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 20));
+        buttonPanel.setBackground(new Color(20, 20, 28));
+        initOpen(buttonPanel);
+        initSettings(buttonPanel);
+        initExit(buttonPanel);
 
-        initOpen(panel);
-        initSettings(panel);
-        initExit(panel);
-
-        add(backgroundLabel);
-
-        //add listeners
+        panel.add(buttonPanel, BorderLayout.SOUTH);
+        add(panel);
     }
 
 }
