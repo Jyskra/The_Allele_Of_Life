@@ -13,11 +13,13 @@ public class Initialization {
         SettingContributionSetting scs = new SettingContributionSetting();
         TickSetting ts = new TickSetting();
         VitalitySetting vs = new VitalitySetting();
+        HeriditySetting hs = new HeriditySetting();
 
         sc.addSetting(ts);
         sc.addSetting(as);
         sc.addSetting(ocs);
         sc.addSetting(scs);
         sc.addSetting(vs);
+        sc.addSetting(hs);
     }
 }

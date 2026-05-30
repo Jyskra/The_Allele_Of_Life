@@ -11,7 +11,7 @@ public class VitalitySetting extends Setting {
     @Override
     public void ApplyTo(Cell cell, double n, int alives) {
         if (cell.isAlive()) {
-            double vitality = Math.min(1.0, cell.getAge() / 100.0); // caps at 1.0
+            double vitality = Math.min(1.0, cell.getAge() / 100.0);
             cell.setWeight(name, vitality);
         } else {
             cell.setWeight(name, 0.0);
@@ -20,6 +20,6 @@ public class VitalitySetting extends Setting {
 
     @Override
     public double Contribute(Cell cell) {
-        return getSliderValue() * cell.getWeight(name); // positive = harder to kill
+        return getSliderValue() * cell.getWeight(name);
     }
 }
