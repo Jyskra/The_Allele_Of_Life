@@ -26,6 +26,7 @@ public class Simulation {
     private boolean running = false;
     private Timer gameLoop;
     private int tickTime = 500;
+    private double settingsInfluence = 0.1;
 
     public Simulation(SimulationConfig config, JFrame mainMenu){
         this.config = config;
@@ -87,7 +88,7 @@ public class Simulation {
 
     private void tick(){
 
-        System.out.println("tick");
+        System.out.println("Tick");
 
         double averageWeights = 0.0;
         double averageAge = 0.0;
@@ -102,7 +103,6 @@ public class Simulation {
             int alives = calculateNeighbouringWeights();
 
             double weightRangeMin = 0, weightRangeMax = 100;
-            double settingsInfluence = 0.1;
 
             boolean baseAlive;
             if(currentCell.isAlive()){
@@ -125,16 +125,12 @@ public class Simulation {
 
                     }
 
-                    if (s.getName().equalsIgnoreCase("weightrangemin")){weightRangeMin = s.getSliderValue();}
-                    if (s.getName().equalsIgnoreCase("weightrangemax")){weightRangeMax = s.getSliderValue();}
-                    if (s.getName().equalsIgnoreCase("settingcontribution")){settingsInfluence = s.getSliderValue() / 100;}
-
                 }
+                if (s.getName().equalsIgnoreCase("settingcontribution")) {settingsInfluence = s.isEnabled() ? s.getSliderValue() / 100 : 0.0;}
 
             }
 
             double clampledTotal = Math.clamp(totalWeights, -1.0, 1.0);
-
 
             double survivalChance = (baseAlive ? 1.0 : 0.0) + clampledTotal * settingsInfluence;
             survivalChance = Math.clamp(survivalChance, 0.0, 1.0);
@@ -143,7 +139,10 @@ public class Simulation {
 
             averageWeights += totalWeights;
 
-            currentCell.flush();
+        }
+
+        for(Cell c : grid){
+            c.flush();
         }
 
         window.getSidebar().updateAverageWeight(averageWeights / grid.size());

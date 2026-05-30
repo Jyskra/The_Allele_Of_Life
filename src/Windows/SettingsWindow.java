@@ -6,6 +6,7 @@ import Settings.SimulationConfig;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class SettingsWindow extends JDialog {
 
@@ -34,6 +35,7 @@ public class SettingsWindow extends JDialog {
 
         for(Setting setting : config.getSettings()){
 
+
             container.add(buildSetting(setting));
 
         }
@@ -59,14 +61,16 @@ public class SettingsWindow extends JDialog {
 
         if (setting.getControlType() != SettingControlType.SLIDEBAR) {
             gbc.gridx = 1;
-            JToggleButton toggle = new JToggleButton("On");
+            JToggleButton toggle = new JToggleButton(setting.isEnabled() ? "On" : "Off");
+
+            toggle.setSelected(true);
             Customs.settingsButton(toggle);
 
             toggle.addActionListener(e -> {
                 Customs.settingsButton(toggle);
-                boolean isOn = toggle.isSelected();
-                toggle.setText(isOn ? "On" : "Off");
+                boolean isOn = !setting.isEnabled() ;
                 setting.setEnabled(isOn);
+                toggle.setText(isOn ? "On" : "Off");
             });
 
             row.add(toggle, gbc);
