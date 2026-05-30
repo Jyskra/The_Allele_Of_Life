@@ -3,6 +3,9 @@ package Settings.IndividualSettings;
 import Settings.Setting;
 import Simulation.Cell;
 
+/**
+ * a setting that just makes the cells dislike nearby neighbours the more its turned up
+ */
 public class OverCrowdednessSetting extends Setting {
 
     public OverCrowdednessSetting(){
@@ -16,6 +19,6 @@ public class OverCrowdednessSetting extends Setting {
 
     @Override
     public double Contribute(Cell cell){
-        return -getSliderValue() * cell.getWeight(name);
+        return cell.getWeight(name) < 4 ? 0.0 : -getSliderValue() * cell.getWeight(name);
     }
 }

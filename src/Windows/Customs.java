@@ -3,6 +3,9 @@ package Windows;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * hard coded configurations for that dopamine hitting look :)
+ */
 public class Customs {
 
     public static void mainMenuButtons(JButton button){

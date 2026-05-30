@@ -6,6 +6,9 @@ import Simulation.Simulation;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * the frame that actually holds all the simulation children
+ */
 public class SimulationWindow extends JDialog {
 
     private final int windowWidth = 1080;

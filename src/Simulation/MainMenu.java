@@ -7,9 +7,15 @@ import Windows.SettingsWindow;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * class that manages the initial title screen and branches off of it
+ */
 public class MainMenu extends JFrame {
     private final SimulationConfig config;
 
+    /**
+     * initializes the title screen
+     */
     public MainMenu(SimulationConfig config){
         this.config = config;
 
@@ -24,7 +30,9 @@ public class MainMenu extends JFrame {
         setVisible(true);
     }
 
-
+    /**
+     * initializes the opening button of the simulation
+     */
     private void initOpen(JPanel panel){
 
         JButton startButton = new JButton("Open");
@@ -45,6 +53,9 @@ public class MainMenu extends JFrame {
 
     }
 
+    /**
+     * initializes the exit button that quits the game
+     */
     private void initExit(JPanel panel){
 
         JButton ExitButton = new JButton("Exit");
@@ -64,6 +75,9 @@ public class MainMenu extends JFrame {
 
     }
 
+    /**
+     * initializes the button that opens settings
+     */
     private void initSettings(JPanel panel){
 
         JButton settingsButton = new JButton("Settings");
@@ -84,6 +98,9 @@ public class MainMenu extends JFrame {
 
     }
 
+    /**
+     * initializes the actual game title
+     */
     private void initTitle(JPanel container){
 
         JLabel title = new JLabel("The Allele Of Life", SwingConstants.CENTER);
@@ -93,7 +110,9 @@ public class MainMenu extends JFrame {
     }
 
 
-
+    /**
+     * uses all the above-mentioned methods
+     */
     private void initUI(){
 
         JPanel panel = new JPanel(new BorderLayout());

@@ -9,6 +9,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 
+/**
+ * the grid class that displays all cells
+ */
 public class GridPanel extends JPanel {
 
     private final int gridWidth, gridHeight, cellSize;
@@ -26,6 +29,9 @@ public class GridPanel extends JPanel {
         mouseEnabling();
     }
 
+    /**
+     * events that make sure cells can be enabled and disabled with clicks and enabled with drags
+     */
     private void mouseEnabling(){
 
         addMouseListener(new MouseAdapter() {
@@ -64,6 +70,9 @@ public class GridPanel extends JPanel {
 
     }
 
+    /**
+     * paints a square on the position that the cell that is displayed is at
+     */
     @Override
     protected void paintComponent(Graphics g){
 

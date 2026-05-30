@@ -3,6 +3,9 @@ package Settings.IndividualSettings;
 import Settings.Setting;
 import Simulation.Cell;
 
+/**
+ * a setting that says how much the actual base game of life is influenced by the custom settings
+ */
 public class SettingContributionSetting extends Setting {
 
     public SettingContributionSetting(){

@@ -2,6 +2,9 @@ package Simulation;
 
 import java.util.HashMap;
 
+/**
+ * the representation of a single square ( cell )
+ */
 public class Cell {
     private int age;
     private boolean alive;
@@ -42,6 +45,9 @@ public class Cell {
         currentWeights.put(name, initialWeight);
     }
 
+    /**
+     * sets the next state of the cell
+     */
     public void flush(){
 
         this.age++;

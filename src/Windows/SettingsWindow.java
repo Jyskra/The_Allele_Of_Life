@@ -8,10 +8,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * class of the settings window, creates interactable configuration of the games behaviour
+ */
 public class SettingsWindow extends JDialog {
 
     private SimulationConfig config;
 
+    /**
+     * creates the setting window itself
+     */
     public SettingsWindow(SimulationConfig config, JFrame parent){
         super(parent, "Settings", true);
         setSize(500, 500);
@@ -43,6 +49,9 @@ public class SettingsWindow extends JDialog {
 
     }
 
+    /**
+     * builds the individual setting
+     */
     private JPanel buildSetting(Setting setting) {
         JPanel row = new JPanel(new GridBagLayout());
         row.setMaximumSize(new Dimension(Integer.MAX_VALUE, 56));

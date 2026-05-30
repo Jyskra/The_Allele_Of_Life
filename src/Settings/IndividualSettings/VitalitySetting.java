@@ -3,6 +3,9 @@ package Settings.IndividualSettings;
 import Settings.Setting;
 import Simulation.*;
 
+/**
+ * a setting that rewards cells for being around longer, basically a selfish inverted version of age setting
+ */
 public class VitalitySetting extends Setting {
     public VitalitySetting() {
         super("Vitality", "Vitality bonus", 0, 50, 10, true);

@@ -6,6 +6,9 @@ import Simulation.Simulation;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * sidebar panel with buttons and feedback information during the simulation
+ */
 public class sidebarPanel extends JPanel {
 
 
@@ -30,6 +33,9 @@ public class sidebarPanel extends JPanel {
 
     }
 
+    /**
+     * initializes a label that displays how many ticks have passed since the simulation has begun
+     */
     private void initTickCount(){
 
         tickCount = new JLabel("Tick count: 0");
@@ -45,6 +51,9 @@ public class sidebarPanel extends JPanel {
         tickCount.setText(String.format("Tick count: %d", tc));
     }
 
+    /**
+     * initializes the label that displays what is the average age of all cells
+     */
     private void initAverageAge(){
 
         averageAge = new JLabel("Avg age: 0.00");
@@ -62,6 +71,9 @@ public class sidebarPanel extends JPanel {
 
     }
 
+    /**
+     * initializes the button that exits to the main menu from the simulation
+     */
     private void initExitButton(){
 
         JButton exitButton = new JButton("Close");
@@ -84,6 +96,9 @@ public class sidebarPanel extends JPanel {
 
     }
 
+    /**
+     * initializes a button that triggers randomized grid fill
+     */
     private void initRandomizeButton(){
 
         JButton randomizeButton = new JButton("Random");
@@ -103,6 +118,9 @@ public class sidebarPanel extends JPanel {
 
     }
 
+    /**
+     * initializes the button that pauses/resumes the simulation
+     */
     private void initStartButton(){
 
         JToggleButton startButton = new JToggleButton("Start");
@@ -130,6 +148,9 @@ public class sidebarPanel extends JPanel {
 
     }
 
+    /**
+     * initializes the button that opens the setting window
+     */
     private void initSettingsButton() {
 
         JButton settingButton = new JButton("Settings");
@@ -152,6 +173,9 @@ public class sidebarPanel extends JPanel {
 
     }
 
+    /**
+     * uses all the methods above
+     */
     private void initSidebar(){
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));

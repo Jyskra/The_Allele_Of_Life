@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
+/**
+ * class that manages all of the game logic
+ */
 public class Simulation {
     private ArrayList<Cell> grid = new ArrayList<>();
     private SimulationConfig config;
@@ -43,6 +46,9 @@ public class Simulation {
         window.setVisible(true);
     }
 
+    /**
+     * initializes the grid randomly based on the density input
+     */
     public void randomize(double density){
         for(Cell cell : grid){
 
@@ -52,6 +58,9 @@ public class Simulation {
         gridPanel.updateGrid(grid);
     }
 
+    /**
+     * creates a new timer that powers the game ticking
+     */
     public void start(){
         running = true;
         for(Setting s : config.getSettings()){
@@ -68,7 +77,9 @@ public class Simulation {
         if(gameLoop != null) gameLoop.stop();
     }
 
-
+    /**
+     * sets up the grid so it's ready for use
+     */
     private void initializeGrid(){
         for(int i = 0; i < gridHeight * gridWidth; i++){
 
@@ -86,6 +97,11 @@ public class Simulation {
         gridPanel.updateGrid(grid);
     }
 
+    /**
+     * basically the whole game logic, ticks everytime the timer mentioned earlier tells it to and does all the logic
+     * calculates its survival based on its enabled settings and their weights
+     * after calculating everything for each cell, it flushed that information so the cells become what they should be
+     */
     private void tick(){
 
         System.out.println("Tick");
@@ -153,6 +169,10 @@ public class Simulation {
         window.getSidebar().updateTickCount(tickCount);
     }
 
+    /**
+     * gets all the neighbours of a certain cell and adds them to an arraylist buffer
+     * @param pos - position of the cell, of which the neighbours need to be found
+     */
     private void getNeighbours(int pos){
 
         int radius = 1;
@@ -177,6 +197,10 @@ public class Simulation {
 
     }
 
+    /**
+     * calculates all the weights of a cells neighbours, also serves as a live neighbour counter
+     * @return - number of alive neighbours
+     */
     private int calculateNeighbouringWeights(){
 
         weightBuffer.clear();

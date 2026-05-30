@@ -3,6 +3,9 @@ package Settings.IndividualSettings;
 import Settings.Setting;
 import Simulation.Cell;
 
+/**
+ * a setting that says how often does a tick happen in milliseconds
+ */
 public class TickSetting extends Setting {
 
     public TickSetting(){

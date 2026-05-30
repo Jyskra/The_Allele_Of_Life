@@ -1,10 +1,24 @@
 package Settings;
 
+import Settings.IndividualSettings.*;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
+/**
+ * the whole game config, holds every information about the game
+ */
 public class SimulationConfig {
-    private final List<Setting> currentSettings = new ArrayList<>();
+    private final List<Setting> currentSettings = new ArrayList<>(List.<Setting>of(
+            new AgeSetting(),
+            new TickSetting(),
+            new OverCrowdednessSetting(),
+            new SettingContributionSetting(),
+            new VitalitySetting(),
+            new HeriditySetting()
+    )
+    );
     private int neighbourRadius;
     private int windowWidth = 1280;
     private int windowHeight = 720;
@@ -13,10 +27,6 @@ public class SimulationConfig {
         return this.currentSettings;
     }
 
-    public void addSetting(Setting setting){
-        currentSettings.add(setting);
-        setting.setEnabled(true);
-    }
 
     public int getNeighbourRadius() {
         return neighbourRadius;

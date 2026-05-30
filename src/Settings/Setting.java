@@ -1,6 +1,10 @@
 package Settings;
 import Simulation.*;
 
+/**
+ * Template for individual setting classes
+ * basically either influences the evolution of cells or influences how other aspects of the game act
+ */
 public abstract class Setting {
     protected String name;
     protected int initialWeight;
@@ -25,6 +29,7 @@ public abstract class Setting {
         this.sliderValue = sliderValue;
         this.controlType = SettingControlType.TOGGLE_WITH_SLIDEBAR;
         this.contributesToCalculations = contributesToCalculations;
+        setEnabled(true);
     }
 
     public void turnOffToggle(){
