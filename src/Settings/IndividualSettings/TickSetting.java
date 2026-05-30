@@ -7,6 +7,7 @@ public class TickSetting extends Setting {
 
     public TickSetting(){
         super("TickTime", "Tick time x10", 25, 100, 50, false);
+        turnOffToggle();
     }
 
 

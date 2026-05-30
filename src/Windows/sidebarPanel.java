@@ -30,21 +30,6 @@ public class sidebarPanel extends JPanel {
 
     }
 
-    private void initAverageWeight(){
-
-        averageWeight = new JLabel("Avg weight: 0.00");
-        averageWeight.setForeground(Color.WHITE);
-        averageWeight.setFont(new Font("Arial", Font.PLAIN, 12));
-        averageWeight.setAlignmentX(Component.CENTER_ALIGNMENT);
-        add(averageWeight);
-        add(Box.createRigidArea(new Dimension(0, 16)));
-
-    }
-
-    public void updateAverageWeight(double average){
-        averageAge.setText(String.format("Avg weight: %.2f", average));
-    }
-
     private void initTickCount(){
 
         tickCount = new JLabel("Tick count: 0");
@@ -179,7 +164,6 @@ public class sidebarPanel extends JPanel {
         initExitButton();
 
         //Labels
-        initAverageWeight();
         initAverageAge();
         initTickCount();
 
