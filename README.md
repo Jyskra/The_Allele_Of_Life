@@ -5,7 +5,8 @@ Since the base Game of Life is too boring to watch, my version introduces actual
 We all know reality hits hard, thats why when the simulation feels a bit too realistic, you can turn all influence off and enjoy the nice and cozy base Game of Life.
 
 ## Controls
-The game UI is very self-explainatory, meaning it is very difficult to get lost in.
+The game UI is very self-explainatory, meaning it is very difficult to get lost in. If you manage to do so, good luck, you're on your own on this one.
+
 ## Now for the actual game, or simulation should i say:
 To enable or disable individual cells in the simulation, simply click them with ANY of your mouse buttons, if thats too much work for you, you can simply drag over them to multiselect (however this only ENABLES them, no multidisable is available)
 Whenever you feel like what you've made on the grid is what you want, start the simulation and enjoy whats happening :)
