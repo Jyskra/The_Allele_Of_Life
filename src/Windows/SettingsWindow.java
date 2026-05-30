@@ -63,7 +63,7 @@ public class SettingsWindow extends JDialog {
             gbc.gridx = 1;
             JToggleButton toggle = new JToggleButton(setting.isEnabled() ? "On" : "Off");
 
-            toggle.setSelected(true);
+            toggle.setSelected(setting.isEnabled());
             Customs.settingsButton(toggle);
 
             toggle.addActionListener(e -> {
